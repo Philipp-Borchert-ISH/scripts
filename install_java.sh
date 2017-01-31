@@ -65,14 +65,14 @@ if [[ "$EXT" == "rpm" ]]; then
         echo -e "\n\e[32mDownloading\e[0m: $DOWNLOAD_URL4"
         while true;
         do echo -n .;sleep 1;done &
-        cd /tmp; wget -q --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" $DOWNLOAD_URL4 -O $JAVA_INSTALL > /dev/null 2>&1
+        cd /tmp; wget -c -q --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" $DOWNLOAD_URL4 -O $JAVA_INSTALL > /dev/null 2>&1
         kill $!; trap 'kill $!' SIGTERM;
         # install rpm
         echo -e "\n\e[32mInstalling\e[0m: $JAVA_INSTALL\r"
         while true;
         do echo -n .;sleep 1;done &
         #rpm -Uvh /tmp/$JAVA_INSTALL > /dev/null 2>&1
-        yum localinstall /tmp/$JAVA_INSTALL
+        yum -y localinstall /tmp/$JAVA_INSTALL
         kill $!; trap 'kill $!' SIGTERM;
         echo -e "\n\e[32mInstall\e[0m Complete\n"
         # get dirname
