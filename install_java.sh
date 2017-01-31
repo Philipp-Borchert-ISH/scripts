@@ -71,7 +71,8 @@ if [[ "$EXT" == "rpm" ]]; then
         echo -e "\n\e[32mInstalling\e[0m: $JAVA_INSTALL\r"
         while true;
         do echo -n .;sleep 1;done &
-        rpm -Uvh /tmp/$JAVA_INSTALL > /dev/null 2>&1
+        #rpm -Uvh /tmp/$JAVA_INSTALL > /dev/null 2>&1
+        yum localinstall /tmp/$JAVA_INSTALL
         kill $!; trap 'kill $!' SIGTERM;
         echo -e "\n\e[32mInstall\e[0m Complete\n"
         # get dirname
